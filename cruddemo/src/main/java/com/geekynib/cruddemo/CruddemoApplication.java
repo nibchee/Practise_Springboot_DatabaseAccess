@@ -22,11 +22,48 @@ public class CruddemoApplication {
 		//Java Lamda Expression
 		return  runner->{
 		//createStudent(studentDAO);
-		//createMultipleStudents(studentDAO);
+
+			//createMultipleStudents(studentDAO);
 
 		//readStudent(studentDAO);
-		queryForStudents(studentDAO);
+	//	queryForStudents(studentDAO);
+
+			//queryForStudentsByLastName(studentDAO);
+		//updateStudent(studentDAO);
+			deleteStudent(studentDAO);
 		};
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+	    int studentId=3;
+		System.out.println("Deleting the student id:"+studentId);
+		studentDAO.delete(studentId);
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+	        //retrieve student based on id:primary id
+   int studentId=1;
+		System.out.println("Getting student with id: "+studentId);
+		Student myStudent=studentDAO.findById(studentId);
+		//change  first name to "Scooby"
+		System.out.println("Updating Student...");
+		myStudent.setFirstName("Scooby");
+
+
+		//Update the Student
+		studentDAO.update(myStudent);
+		//diaply the update student
+		System.out.println("Updated Student: "+myStudent);
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+
+		//get a list of students
+       List<Student> theStudents=studentDAO.findByLastName("Bansal");
+		//display list of students
+		for(Student tempStudent:theStudents){
+			System.out.println(tempStudent);
+		}
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
