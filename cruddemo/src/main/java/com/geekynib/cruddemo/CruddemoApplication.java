@@ -20,8 +20,31 @@ public class CruddemoApplication {
 		//Java Lamda Expression
 		return  runner->{
 		//createStudent(studentDAO);
-		createMultipleStudents(studentDAO);
+		//createMultipleStudents(studentDAO);
+
+		readStudent(studentDAO);
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+		//create a student object
+		System.out.println("Creating a new student object...");
+		Student tempStudent=new Student("Cheenu","bansal","cheenub28@gmail.com");
+
+		//save a student
+		System.out.println("Saving the student...");
+		studentDAO.save(tempStudent);
+
+		//display id of saved student
+		int theId=tempStudent.getId();
+		System.out.println("Saved student, Generated id"+theId);
+
+		//retrieve student based on id: primary key
+		System.out.println("Retrieving student with id "+theId);
+		Student myStudent=studentDAO.findById(theId);
+
+		//display student
+		System.out.println("Found the Student " +myStudent);
 	}
 
 	private void createMultipleStudents(StudentDAO studentDAO) {
